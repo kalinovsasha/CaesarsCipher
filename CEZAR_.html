@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesars Cipher</title>
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+        .main{
+            margin: 0 auto;
+            width: 1280px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: 400;
+        }
+        .input{
+            width: 220px;
+            height: 22px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        #bt1{
+            margin-top: 10px;
+            width: 180px;
+            height: 28px;
+            font-size: 16px;
+            font-weight: bold;  
+        }
+        #bt1:hover{
+            background-color: rgb(112, 11, 87);
+            border: 1px solid black;
+            transition: .2s;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="main">
+         <h2>Caesars Cipher</h2>
+        <p>One of the simplest and most widely known ciphers is a Caesar cipher, also known as a shift cipher. In a shift cipher the meanings of the letters are shifted by some set amount.
+        <br> A common modern use is the ROT13 cipher, where the values of the letters are shifted by 13 places. Thus 'A' ↔ 'N', 'B' ↔ 'O' and so on.  
+        <br> Write a function which takes a ROT13 encoded string as input and returns a decoded string.
+        <br> All letters will be uppercase. Do not transform any non-alphabetic character (i.e. spaces, punctuation), but do pass them on.
+        <br><br><i>cezar("SERR PBQR PNZC") should decode to FREE CODE CAMP
+            <br> cezar("SERR CVMMN!") should decode to FREE PIZZA!
+            <br> cezar("SERR YBIR?") should decode to FREE LOVE?
+            <br> cezar("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT.") should decode to THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG.</i>
+        </p>
+        <input class="input" type="text" value="SERR CVMMN!">
+        <br> <button id="bt1">Расшифровать</button>
+    </div>
+
+    <script>
+        let input = document.querySelector(".input");
+        let bt1=document.getElementById("bt1");
+        bt1.addEventListener("click",()=>{
+            alert(cezar(input.value));
+        })
+       
+        function cezar(str=""){
+            let abc ="abcdefghijklmnopqrstuvwxyz";
+            let result =[];
+            let pos=0;
+            str=str.toUpperCase();
+            abc=abc.toUpperCase();
+            
+            for(let i=0; i<str.length;i++){
+                pos=abc.indexOf(str[i]);
+                pos=(pos+13>25)?(pos+13)-26:pos+13;
+                if(abc.indexOf(str[i])==-1){
+                    result.push(str[i]);
+                }    else{
+                    result.push(abc[pos]);
+                }
+            }
+            return result.join("");
+        }
+    </script>
+</body>
+</html>
